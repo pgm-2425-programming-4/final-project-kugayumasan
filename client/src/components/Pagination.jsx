@@ -1,4 +1,4 @@
-import './Pagination.css';
+import '../styles/pagination.css';
 
 export function Pagination({
   currentPage,
