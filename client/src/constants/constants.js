@@ -1,6 +1,6 @@
 export const API_URL = import.meta.env.PROD
 
-  ? "https://final-project-kugayumasan.onrender.com"
+  ? "https://final-project-kugayumasan.onrender.com/api"
 
   : "http://localhost:1337/api";
 
