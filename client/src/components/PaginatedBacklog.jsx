@@ -12,8 +12,17 @@ export function PaginatedBacklog() {
     queryKey: ["backlogTasks", currentPage, pageSize],
     queryFn: async () => {
       const res = await fetch(
-        `${API_URL}/tasks?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&filters[state][name][$eq]=Backlog`
+        `${API_URL}/tasks?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&filters[state][name][$eq]=Backlog`,
+        {
+          headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
+      if (!res.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
       return res.json();
     },
     keepPreviousData: true,
