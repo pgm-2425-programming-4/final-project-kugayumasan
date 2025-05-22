@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Backlog from "./Backlog";
 import { Pagination } from "./Pagination";
+import { API_TOKEN, API_URL } from "../constants/constants";
 
 export function PaginatedBacklog() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,8 +12,17 @@ export function PaginatedBacklog() {
     queryKey: ["backlogTasks", currentPage, pageSize],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:1337/api/tasks?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&filters[state][name][$eq]=Backlog`
+        `${API_URL}/tasks?pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&filters[state][name][$eq]=Backlog`,
+        {
+          headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
+      if (!res.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
       return res.json();
     },
     keepPreviousData: true,
