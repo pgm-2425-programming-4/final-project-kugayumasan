@@ -1,4 +1,4 @@
-// client/src/components/Backlog.jsx
+
 export default function Backlog({ tasks }) {
   return (
     <table>

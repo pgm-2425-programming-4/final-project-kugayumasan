@@ -1,13 +1,24 @@
-import "./App.css";
+import { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import StatusBoard from "./components/StatusBoard";
 import { PaginatedBacklog } from "./components/PaginatedBacklog";
+import "./styles/App.css";
 
-function App() {
+export default function App() {
+  const [activeProject, setActiveProject] = useState("PGM3");
+
   return (
-    <div>
-      <h1>PGM4 - Backlog</h1>
-      <PaginatedBacklog />
+    <div className="app-layout">
+      <Sidebar
+        projects={["PGM3", "PGM4"]}
+        activeProject={activeProject}
+        onProjectSelect={setActiveProject}
+      />
+
+      <div className="main-content">
+        <StatusBoard project={activeProject} />
+        {/* <PaginatedBacklog project={activeProject} /> */}
+      </div>
     </div>
   );
 }
-
-export default App;

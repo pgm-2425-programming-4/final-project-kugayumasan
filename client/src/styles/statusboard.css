@@ -1,0 +1,30 @@
+.status__board {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.status__column {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.status__title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.task__card {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
