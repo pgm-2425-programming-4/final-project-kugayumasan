@@ -32,26 +32,25 @@ export function StatusColumn({ status, project }) {
       {isError && <p>Error loading tasks.</p>}
       {tasks.length === 0 && <p>No tasks</p>}
 
-      {tasks.map((task) => (
-        <div key={task.id} className="task__card">
-          <p>
-            Titel: {task.attributes.Title}
-          </p>
-          <p>
-            Beschrijving: {task.attributes.Description || "-"}
-          </p>
-          <p>
-            Deadline:{" "}
-            {task.attributes.dueDate
-              ? new Date(task.attributes.dueDate).toLocaleDateString()
-              : "-"}
-          </p>
-          <p>
-            Status:{" "}
-            {task.attributes.state?.data?.attributes?.name || "-"}
-          </p>
-        </div>
-      ))}
+      {tasks
+        .filter((task) => task?.attributes) // skip broken entries
+        .map((task) => {
+          const attrs = task.attributes;
+
+          return (
+            <div key={task.id} className="task__card">
+              <p>Titel: {attrs.Title}</p>
+              <p>Beschrijving: {attrs.Description || "-"}</p>
+              <p>
+                Deadline:{" "}
+                {attrs.dueDate
+                  ? new Date(attrs.dueDate).toLocaleDateString()
+                  : "-"}
+              </p>
+              <p>Status: {attrs.state?.data?.attributes?.name || "-"}</p>
+            </div>
+          );
+        })}
     </div>
   );
 }
