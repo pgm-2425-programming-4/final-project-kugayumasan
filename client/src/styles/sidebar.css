@@ -1,0 +1,32 @@
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  border-right: 1px solid #d6d0d0;
+  height: 100vh;
+}
+
+.sidebar__title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.sidebar__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar__item {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+}
+
+.sidebar__item:hover {
+  background-color: #b9b6b6;
+}
+
+.sidebar__item.active {
+  font-weight: bold;
+  background-color: #d4cdcd;
+}
