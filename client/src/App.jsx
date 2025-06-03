@@ -2,7 +2,7 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import StatusBoard from "./components/StatusBoard";
 import { PaginatedBacklog } from "./components/PaginatedBacklog";
-import "./styles/App.css";
+import "./styles/app.css";
 
 export default function App() {
   const [activeProject, setActiveProject] = useState("PGM3");
