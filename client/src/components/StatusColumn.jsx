@@ -4,7 +4,7 @@ import { API_URL, API_TOKEN } from "../constants/constants";
 export function StatusColumn({ status, project }) {
   const fetchTasksByStatus = async () => {
     const res = await fetch(
-      `${API_URL}/tasks?filters[state][name][$eq]=${status}&filters[project][$eq]=${project}&populate=*`,
+      `${API_URL}/tasks?filters[state][name][$eq]=${status}&populate=*`,
       {
         headers: {
           Authorization: `Bearer ${API_TOKEN}`,
