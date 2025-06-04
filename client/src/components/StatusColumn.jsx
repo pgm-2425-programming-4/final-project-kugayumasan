@@ -3,14 +3,11 @@ import { API_URL, API_TOKEN } from "../constants/constants";
 
 export function StatusColumn({ status, project }) {
   const fetchTasksByStatus = async () => {
-    const res = await fetch(
-      `${API_URL}/tasks?populate=*`,
-      {
-        headers: {
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      }
-    );
+    const res = await fetch(`${API_URL}/tasks?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch tasks");
     }
@@ -33,9 +30,9 @@ export function StatusColumn({ status, project }) {
       {tasks.length === 0 && <p>No tasks</p>}
 
       {tasks
-        .filter((task) => task?.attributes) // skip broken entries
+        .filter((task) => task?.attributes || task?.Title)
         .map((task) => {
-          const attrs = task.attributes;
+          const attrs = task.attributes || task;
 
           return (
             <div key={task.id} className="task__card">
