@@ -1,25 +1,57 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL, API_TOKEN } from "../constants/constants";
 
-export function StatusColumn({ status, project }) {
-  const fetchTasksByStatus = async () => {
-    const res = await fetch(`${API_URL}/tasks?populate=*`, {
+export function StatusColumn({ status, project, selectedLabel, searchTerm }) {
+  const fetchTasks = async () => {
+    const url = `${API_URL}/tasks?filters[state][name][$eq]=${encodeURIComponent(
+      status
+    )}&filters[project][$eq]=${project}&populate=*`;
+
+    const res = await fetch(url, {
       headers: {
         Authorization: `Bearer ${API_TOKEN}`,
       },
     });
+
     if (!res.ok) {
+      const errorText = await res.text();
+      console.error("❌ Fetch failed:", res.status, errorText);
       throw new Error("Failed to fetch tasks");
     }
-    return res.json(); // ⬅️ gewoon response teruggeven zonder mappen
+
+    return res.json();
   };
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["tasks", project, status],
-    queryFn: fetchTasksByStatus,
+    queryFn: fetchTasks,
   });
 
   const tasks = data?.data || [];
+  
+
+
+  // ✅ Filtering met veilige checks
+  const filteredTasks = tasks
+  .filter((task) => task?.attributes)
+  .filter((task) => {
+    const attrs = task.attributes;
+    const title = attrs.Title?.toLowerCase() || "";
+    const description = attrs.Description?.toLowerCase() || "";
+
+    const matchesSearch =
+      searchTerm === "" ||
+      title.includes(searchTerm.toLowerCase()) ||
+      description.includes(searchTerm.toLowerCase());
+
+    return matchesSearch;
+  });
+
+
+
+  console.log("✅ FILTERED TAKEN:", filteredTasks);
+
+
 
   return (
     <div className="status__column">
@@ -27,27 +59,37 @@ export function StatusColumn({ status, project }) {
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error loading tasks.</p>}
-      {tasks.length === 0 && <p>No tasks</p>}
+      {!isLoading && !isError && filteredTasks.length === 0 && <p>No tasks</p>}
 
-      {tasks
-        .filter((task) => task?.attributes || task?.Title)
-        .map((task) => {
-          const attrs = task.attributes || task;
+      {filteredTasks.map((task) => {
+        const attrs = task.attributes;
+        const labels = attrs.labels?.data || [];
 
-          return (
-            <div key={task.id} className="task__card">
-              <p>Titel: {attrs.Title}</p>
-              <p>Beschrijving: {attrs.Description || "-"}</p>
-              <p>
-                Deadline:{" "}
-                {attrs.dueDate
-                  ? new Date(attrs.dueDate).toLocaleDateString()
-                  : "-"}
-              </p>
-              <p>Status: {attrs.state?.data?.attributes?.name || "-"}</p>
-            </div>
-          );
-        })}
+        return (
+          <div key={task.id} className="task__card">
+            <p>
+              <strong>Titel:</strong> {attrs.Title}
+            </p>
+            <p>
+              <strong>Beschrijving:</strong> {attrs.Description || "-"}
+            </p>
+            <p>
+              <strong>Deadline:</strong>{" "}
+              {attrs.dueDate
+                ? new Date(attrs.dueDate).toLocaleDateString()
+                : "-"}
+            </p>
+            <p>
+              <strong>Status:</strong>{" "}
+              {attrs.state?.data?.attributes?.name || "-"}
+            </p>
+            <p>
+              <strong>Labels:</strong>{" "}
+              {labels.map((l) => l.attributes.name).join(", ") || "-"}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 }

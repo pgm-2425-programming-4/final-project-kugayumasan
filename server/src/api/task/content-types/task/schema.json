@@ -28,6 +28,17 @@
       "relation": "manyToOne",
       "target": "api::status.status",
       "inversedBy": "tasks"
+    },
+    "labels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::label.label",
+      "inversedBy": "tasks"
+    },
+    "project": {
+      "type": "string",
+      "required": true,
+      "unique": false
     }
   }
 }

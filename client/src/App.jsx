@@ -2,10 +2,23 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import StatusBoard from "./components/StatusBoard";
 import { PaginatedBacklog } from "./components/PaginatedBacklog";
+import TopBar from "./components/TopBar";
 import "./styles/app.css";
 
 export default function App() {
   const [activeProject, setActiveProject] = useState("PGM3");
+  const [selectedLabel, setSelectedLabel] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleAddTask = () => {
+    console.log("Add task clicked");
+    // Later: open form
+  };
+
+  const handleViewBacklog = () => {
+    console.log("View backlog clicked");
+    // Later: toggle PaginatedBacklog zichtbaar maken
+  };
 
   return (
     <div className="app-layout">
@@ -16,7 +29,21 @@ export default function App() {
       />
 
       <div className="main-content">
-        <StatusBoard project={activeProject} />
+        <TopBar
+          selectedLabel={selectedLabel}
+          onLabelChange={setSelectedLabel}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          onAddTask={handleAddTask}
+          onViewBacklog={handleViewBacklog}
+        />
+
+        <StatusBoard
+          project={activeProject}
+          selectedLabel={selectedLabel}
+          searchTerm={searchTerm}
+        />
+
         {/* <PaginatedBacklog project={activeProject} /> */}
       </div>
     </div>
