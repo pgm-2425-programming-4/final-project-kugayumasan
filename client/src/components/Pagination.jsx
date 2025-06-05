@@ -1,4 +1,4 @@
-import '../styles/pagination.css';
+import "../styles/pagination.css";
 
 export function Pagination({
   currentPage,
@@ -47,19 +47,21 @@ export function Pagination({
       <ul className="pagination-list">
         {pageNumberArray.map((pageNumber, index) =>
           pageNumber === null ? (
-            <li key={index} className="pagination-ellipsis">…</li>
+            <li key={index} className="pagination-ellipsis">
+              …
+            </li>
           ) : (
             <li key={index}>
               <button
                 className={`pagination-btn ${
-                  pageNumber === currentPage ? 'active' : ''
+                  pageNumber === currentPage ? "active" : ""
                 }`}
                 onClick={() => onPageChanged(pageNumber)}
               >
                 {pageNumber}
               </button>
             </li>
-          )
+          ),
         )}
       </ul>
 

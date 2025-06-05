@@ -4,7 +4,7 @@ import { API_URL, API_TOKEN } from "../constants/constants";
 export function StatusColumn({ status, project, selectedLabel, searchTerm }) {
   const fetchTasks = async () => {
     const url = `${API_URL}/tasks?filters[state][name][$eq]=${encodeURIComponent(
-      status
+      status,
     )}&filters[project][$eq]=${project}&populate=*`;
 
     const res = await fetch(url, {
@@ -28,30 +28,24 @@ export function StatusColumn({ status, project, selectedLabel, searchTerm }) {
   });
 
   const tasks = data?.data || [];
-  
-
 
   // ✅ Filtering met veilige checks
   const filteredTasks = tasks
-  .filter((task) => task?.attributes)
-  .filter((task) => {
-    const attrs = task.attributes;
-    const title = attrs.Title?.toLowerCase() || "";
-    const description = attrs.Description?.toLowerCase() || "";
+    .filter((task) => task?.attributes)
+    .filter((task) => {
+      const attrs = task.attributes;
+      const title = attrs.Title?.toLowerCase() || "";
+      const description = attrs.Description?.toLowerCase() || "";
 
-    const matchesSearch =
-      searchTerm === "" ||
-      title.includes(searchTerm.toLowerCase()) ||
-      description.includes(searchTerm.toLowerCase());
+      const matchesSearch =
+        searchTerm === "" ||
+        title.includes(searchTerm.toLowerCase()) ||
+        description.includes(searchTerm.toLowerCase());
 
-    return matchesSearch;
-  });
-
-
+      return matchesSearch;
+    });
 
   console.log("✅ FILTERED TAKEN:", filteredTasks);
-
-
 
   return (
     <div className="status__column">

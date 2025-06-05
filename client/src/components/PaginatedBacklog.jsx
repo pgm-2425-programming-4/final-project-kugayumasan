@@ -18,7 +18,7 @@ export function PaginatedBacklog() {
             Authorization: `Bearer ${API_TOKEN}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (!res.ok) {
         throw new Error("Failed to fetch tasks");
