@@ -22,6 +22,14 @@
   color: #333;
 }
 
+.sidebar__link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+
 .sidebar__item:hover {
   background-color: #b9b6b6;
 }
