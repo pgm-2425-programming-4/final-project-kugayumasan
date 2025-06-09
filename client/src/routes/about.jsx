@@ -14,9 +14,9 @@ function AboutPage() {
         project, status en label!
       </p>
       <p>
-        Gemaakt door: <strong>Karel De Smet</strong>
+        Gemaakt door: <strong>eros ferri</strong>
         <br />
-        E-mail: karel.desmet@arteveldehs.be
+        E-mail: eros.ferri@arteveldehs.be
         <br />
         <a href="https://linkedin.com/in/jouwprofiel" target="_blank" rel="noreferrer">
           LinkedIn
