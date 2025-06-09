@@ -1,4 +1,3 @@
-
 export default function Backlog({ tasks }) {
   return (
     <table>
@@ -16,9 +15,7 @@ export default function Backlog({ tasks }) {
             <td>{task.Title}</td>
             <td>{task.Description || "-"}</td>
             <td>
-              {task.dueDate
-                ? new Date(task.dueDate).toLocaleDateString()
-                : "-"}
+              {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "-"}
             </td>
             <td>{task.state?.name || "-"}</td>
           </tr>
