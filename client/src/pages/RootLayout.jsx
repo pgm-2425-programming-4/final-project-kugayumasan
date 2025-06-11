@@ -1,4 +1,5 @@
 import { Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
+import { TanstackRouterDevTools} from "@tanstack/react-router-devtools"
 import Sidebar from "../components/Sidebar.jsx";
 import "../styles/app.css";
 
@@ -21,6 +22,7 @@ export default function RootLayout() {
       
       <div className="main-content">
         <Outlet />
+        <TanstackRouterDevTools/>
       </div>
     </div>
   );
