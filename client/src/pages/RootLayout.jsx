@@ -1,6 +1,7 @@
 import { Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar.jsx";
+import { API_URL } from "../constants/constants";
 import "../styles/app.css";
 
 export default function RootLayout() {
@@ -11,7 +12,7 @@ export default function RootLayout() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const res = await fetch("http://localhost:1337/api/projects");
+        const res = await fetch(`${API_URL}/projects`);
         const json = await res.json();
         const data = json.data.map((p) => ({
           id: p.id,
