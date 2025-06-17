@@ -2,5 +2,5 @@
 
 render: https://final-project-kugayumasan.onrender.com
 
-netlify: final-project-jamstack.netlify.app
+netlify: https://final-project-jamstack.netlify.app/
 
