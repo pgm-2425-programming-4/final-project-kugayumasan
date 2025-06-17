@@ -7,10 +7,14 @@ export default function Sidebar({ projects, activeProject, onProjectSelect }) {
       <h4 className="sidebar__title">INFO</h4>
       <ul className="sidebar__list">
         <li className="sidebar__item">
-          <Link to="/" className="sidebar__link">Home</Link>
+          <Link to="/" className="sidebar__link">
+            Home
+          </Link>
         </li>
         <li className="sidebar__item">
-          <Link to="/about" className="sidebar__link">About</Link>
+          <Link to="/about" className="sidebar__link">
+            About
+          </Link>
         </li>
       </ul>
 
@@ -18,17 +22,18 @@ export default function Sidebar({ projects, activeProject, onProjectSelect }) {
       <ul className="sidebar__list">
         {projects.map((project) => {
           let className = "sidebar__item";
-          if (project === activeProject) {
+          const path = `/projects/${project.id}`;
+          if (activeProject.startsWith(path)) {
             className += " active";
           }
 
           return (
             <li
-              key={project}
+              key={project.id}
               className={className}
               onClick={() => onProjectSelect(project)}
             >
-              {project}
+              {project.title}
             </li>
           );
         })}

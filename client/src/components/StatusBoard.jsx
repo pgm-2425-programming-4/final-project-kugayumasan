@@ -1,7 +1,7 @@
 import "../styles/statusboard.css";
 import { StatusColumn } from "./StatusColumn";
 
-export default function StatusBoard({ project, selectedLabel, searchTerm }) {
+export default function StatusBoard({ projectId, selectedLabel, searchTerm }) {
   const statuses = ["To-do", "In progress", "Ready for review", "Done"];
 
   return (
@@ -10,7 +10,7 @@ export default function StatusBoard({ project, selectedLabel, searchTerm }) {
         <StatusColumn
           key={status}
           status={status}
-          project={project}
+          projectId={projectId}
           selectedLabel={selectedLabel}
           searchTerm={searchTerm}
         />
