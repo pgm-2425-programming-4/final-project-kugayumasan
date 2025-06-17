@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL, API_TOKEN } from "../constants/constants";
 
-export function StatusColumn({ status, project, selectedLabel, searchTerm }) {
+export function StatusColumn({ status, projectId, selectedLabel, searchTerm }) {
   const fetchTasks = async () => {
-    const url = `${API_URL}/tasks?filters[project][$eq]=${encodeURIComponent(
-      project
-    )}&populate=*`;
+    const url = `${API_URL}/tasks?filters[project][id][$eq]=${projectId}&populate=*`;
 
     const res = await fetch(url, {
       headers: {
@@ -24,7 +22,7 @@ export function StatusColumn({ status, project, selectedLabel, searchTerm }) {
   };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["tasks", project, status],
+    queryKey: ["tasks", projectId, status],
     queryFn: fetchTasks,
   });
 

@@ -4,7 +4,7 @@ import StatusBoard from "../components/StatusBoard";
 import TopBar from "../components/TopBar";
 
 export default function ProjectView() {
-  const { projectId } = Route.useParams(); // <-- fix
+  const { projectId } = Route.useParams(); 
   const [selectedLabel, setSelectedLabel] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -21,7 +21,7 @@ export default function ProjectView() {
         }
       />
       <StatusBoard
-        project={`PGM${projectId}`}
+        projectId={projectId}
         selectedLabel={selectedLabel}
         searchTerm={searchTerm}
       />
