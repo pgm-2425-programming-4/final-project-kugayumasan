@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Route } from "../routes/projects/$projectId"; 
+import { Route } from "../routes/projects/$projectId";
+import { useNavigate } from "@tanstack/react-router";
 import StatusBoard from "../components/StatusBoard";
 import TopBar from "../components/TopBar";
 
 export default function ProjectView() {
-  const { projectId } = Route.useParams(); 
+  const { projectId } = Route.useParams();
   const [selectedLabel, setSelectedLabel] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,9 +18,7 @@ export default function ProjectView() {
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         onAddTask={() => alert("Add task not implemented")}
-        onViewBacklog={() =>
-          (window.location.href = `/projects/${projectId}/backlog`)
-        }
+        onViewBacklog={() => navigate({ to: `/projects/${projectId}/backlog` })}
       />
       <StatusBoard
         projectId={projectId}
