@@ -13,21 +13,21 @@
 }
 
 .topbar__select {
-  flex: 0 1 auto; /* 👈 allow shrinking if needed */
+  flex: 0 1 auto; 
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
 .topbar__search {
-  flex: 1 1 200px; /* 👈 grow to fill, but minimum 200px */
+  flex: 1 1 200px; 
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
 .topbar__button {
-  flex: 0 0 auto; /* 👈 fixed size, don't grow */
+  flex: 0 0 auto; 
   background-color: #3b82f6;
   color: white;
   padding: 8px 12px;
