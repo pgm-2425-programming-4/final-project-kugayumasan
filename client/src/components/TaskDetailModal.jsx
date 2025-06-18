@@ -127,19 +127,15 @@ export default function TaskDetailModal({ task, onClose, onUpdated }) {
             <p>
               <strong>Status:</strong> {task.state?.name || "Onbekend"}
             </p>
-            <p>
-              <strong>Project ID:</strong> {task.project?.id || "Onbekend"}
-            </p>
-
             <div>
               <button
                 className="backlog__edit-button"
                 onClick={() => setIsEditing(true)}
               >
-                ✏️ Bewerken
+                Edit
               </button>
               <button className="backlog__delete-button" onClick={handleDelete}>
-                🗑️ Verwijderen
+                Delete
               </button>
             </div>
           </>
