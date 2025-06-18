@@ -1,8 +1,9 @@
 body {
-  background-image: url(../../public/coolbackgrounds-gradient-kale.png);
+  background-image: url(../../public/images/done.jfif);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: "Geist Mono", monospace;
 }
 
 .layout {

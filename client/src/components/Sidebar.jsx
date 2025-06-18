@@ -1,17 +1,27 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router"; // ✅ juiste import
 import "../styles/sidebar.css";
 
-export default function Sidebar({ projects, activeProject, onProjectSelect }) {
+export default function Sidebar({ projects, onProjectSelect }) {
+  const { location } = useRouterState(); // ✅ haalt current path op
+
   return (
     <div className="sidebar">
       <h4 className="sidebar__title">INFO</h4>
       <ul className="sidebar__list">
-        <li className="sidebar__item">
+        <li
+          className={`sidebar__item ${
+            location.pathname === "/" ? "active" : ""
+          }`}
+        >
           <Link to="/" className="sidebar__link">
             Home
           </Link>
         </li>
-        <li className="sidebar__item">
+        <li
+          className={`sidebar__item ${
+            location.pathname === "/about" ? "active" : ""
+          }`}
+        >
           <Link to="/about" className="sidebar__link">
             About
           </Link>
@@ -21,11 +31,9 @@ export default function Sidebar({ projects, activeProject, onProjectSelect }) {
       <h4 className="sidebar__title">PROJECTS</h4>
       <ul className="sidebar__list">
         {projects.map((project) => {
-          let className = "sidebar__item";
           const path = `/projects/${project.id}`;
-          if (activeProject.startsWith(path)) {
-            className += " active";
-          }
+          const isActive = location.pathname.startsWith(path); // ✅ active check
+          const className = `sidebar__item ${isActive ? "active" : ""}`;
 
           return (
             <li

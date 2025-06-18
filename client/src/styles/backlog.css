@@ -67,6 +67,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  margin-left: 0.8rem;
 }
 
 .backlog__table th {

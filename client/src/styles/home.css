@@ -1,0 +1,50 @@
+/* Home Section */
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  min-height: 85vh;
+}
+
+.home__content {
+  max-width: 750px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(3px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.home__title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.home__subtitle {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.home__instructions {
+  font-size: 1.1rem;
+  color: #5c5c5c;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.home__note {
+  font-weight: 600;
+  color: #007bff;
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  transition: color 0.3s ease;
+}
