@@ -6,11 +6,11 @@
 }
 
 .sidebar__title {
-  font-size: 16px; /* iets groter */
-  color: #1f2937; /* donkerder grijs/blauw voor meer contrast */
-  font-weight: 600; /* iets vetter */
-  text-transform: uppercase; /* hoofdletters voor duidelijkheid */
-  letter-spacing: 0.5px; /* subtiele spatiëring */
+  font-size: 16px; 
+  color: #1f2937; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px; 
   margin-bottom: 12px;
 }
 
