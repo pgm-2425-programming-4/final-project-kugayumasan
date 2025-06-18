@@ -14,7 +14,7 @@ function BacklogPage() {
   useEffect(() => {
     async function fetchTasks() {
       const res = await fetch(
-        `${API_URL}/tasks?filters[project][id][$eq]=${projectId}&populate=*`,
+        `${API_URL}/tasks?filters[project][id][$eq]=${projectId}&filters[state][name][$eq]=Backlog&populate=*`,
         {
           headers: {
             Authorization: `Bearer ${API_TOKEN}`,
@@ -22,6 +22,7 @@ function BacklogPage() {
         }
       );
       const json = await res.json();
+      console.log("📦 Fetched backlog tasks:", json.data); // 👈 voeg dit toe
       setTasks(json.data);
     }
 
