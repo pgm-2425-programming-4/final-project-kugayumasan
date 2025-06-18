@@ -1,7 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import TaskDetailModal from "./TaskDetailModal";
 import { API_URL, API_TOKEN } from "../constants/constants";
 
-export function StatusColumn({ status, projectId, selectedLabel, searchTerm, refetchKey }) {
+export function StatusColumn({
+  status,
+  projectId,
+  selectedLabel,
+  searchTerm,
+  refetchKey,
+  onForceRefetch, // <-- nodig voor refresh van parent
+}) {
+  const [selectedTask, setSelectedTask] = useState(null);
+
   const fetchTasks = async () => {
     const url = `${API_URL}/tasks?filters[project][id][$eq]=${projectId}&populate=*`;
 
@@ -64,7 +75,11 @@ export function StatusColumn({ status, projectId, selectedLabel, searchTerm, ref
         const labels = task.labels || [];
 
         return (
-          <div key={task.id} className="task__card">
+          <div
+            key={task.id}
+            className="task__card"
+            onClick={() => setSelectedTask(task)} // 👈 open modal
+          >
             <p className="task__title">{task.Title}</p>
             <div className="task__labels">
               {labels.map((l) => {
@@ -86,6 +101,18 @@ export function StatusColumn({ status, projectId, selectedLabel, searchTerm, ref
           </div>
         );
       })}
+
+      {/* ⬇️ Detailmodal tonen */}
+      {selectedTask && (
+        <TaskDetailModal
+          task={selectedTask}
+          onClose={() => setSelectedTask(null)}
+          onUpdated={() => {
+            setSelectedTask(null);
+            onForceRefetch?.(); // trigger kolomrefresh
+          }}
+        />
+      )}
     </div>
   );
 }
