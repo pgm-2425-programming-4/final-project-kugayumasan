@@ -1,6 +1,13 @@
+body {
+  background-image: url(../../public/coolbackgrounds-gradient-kale.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .layout {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .main-content {
